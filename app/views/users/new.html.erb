@@ -1,0 +1,68 @@
+<div class="container">
+
+  <h1>注册</h1>
+
+  <input type="hidden" name="signup_type" value="email" />
+
+  <form class="form-horizontal" id="user_form" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="Cs+qD9P2jIsT4cS0ap2W5IVCIGGy4N0rnY9gEvzKcOFtEL6m6SW0sPfoC2P1f/0lCUF7Bj1dq7CJTVIUIXEpfg==" />
+    <div class="form-group email-inner ">
+      <label class="col-sm-2 control-label">邮箱 *</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="user[email]" id="user_email" />
+        <a class="switch-btn" href="javascript:;">使用手机号</a>
+      </div>
+    </div>
+
+    <div class="form-group phone-inner hide">
+      <label class="col-sm-2 control-label">手机号 *</label>
+      <div class="col-sm-4">
+        <input class="form-control" disabled="disabled" type="text" name="user[phone]" id="user_phone" />
+        <a class="switch-btn" href="javascript:;">使用邮箱</a>
+      </div>
+      <!--
+      <div class="col-sm-4">
+        <input class="form-control" placeholder="手机验证码" type="text" name="user[token]" id="user_token" />
+      </div>
+      <div class="col-sm-2">
+        <input type="button" value="获取验证码" class="btn btn-warning fetch-token-btn" data-url="/phone_tokens" />
+      </div>
+      -->
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">密码 *</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="password" name="user[password]" id="user_password" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">密码确认 *</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" name="create_user_submit" value="创建账户" class="btn btn-primary">
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+      var use_email = $('input[name="signup_type"]').val() == 'email';
+      $('.switch-btn').click(function() {
+        if (use_email) {
+          $('.email-inner').addClass('hide').find('input[type="text"]').prop('disabled', 1)
+          $('.phone-inner').removeClass('hide').find('input[type="text"]').prop('disabled', false)
+          use_email = false;
+        } else {
+          $('.email-inner').removeClass('hide').find('input[type="text"]').prop('disabled', false)
+          $('.phone-inner').addClass('hide').find('input[type="text"]').prop('disabled', 1)
+          use_email = true;
+        }
+      })
+</script>
