@@ -1,1 +1,30 @@
-<h1>Welcome</h1>
+<style>
+.thumbnail {
+  height: 240px;
+}
+</style>
+
+
+<%= render 'layouts/sidebar' %>
+<div class="col-lg-9">
+  <ol class="breadcrumb">
+    <li class="active">Home</li>
+  </ol>
+<div>
+
+<div class="col-lg-9">
+  <div class="row">
+    <% Product.all.each do |product| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <a href="/products/<%= product.id %>"><img alt="<%=product.name %>" src="<%= image_url('1678945367352.jpeg') %>"/></a>
+          <div class="caption">
+            <h4><a class="title" href="/products/<%= product.id %>"><%=product.name %></a></h4>
+            <p><strong>¥<%=product.discounted_price %></strong> <span style="text-decoration:line-through">¥<%= product.original_price %></span></p>
+            <p><a class="btn btn-danger add-to-cart-btn btn-xs" href="/shopping_car/new?id=<%= product.id %>"><i class='fa fa-spinner'></i> 加入购物车</a></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230321103212) do
+ActiveRecord::Schema.define(version: 20230327092120) do
+
+  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
+    t.string "addr_detail"
+    t.string "person"
+    t.string "phone"
+    t.string "post_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
@@ -18,14 +27,40 @@ ActiveRecord::Schema.define(version: 20230321103212) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
+  create_table "kinds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "name"
     t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
+    t.string "name"
+    t.string "p_name"
+    t.string "p_price"
+    t.string "num"
+    t.string "p_addr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status"
+  end
+
+  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
+    t.string "name"
     t.string "original_price"
     t.string "discounted_price"
     t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "p_num"
+    t.integer "kind_id"
+  end
+
+  create_table "shopping_cars", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
+    t.string "p_name"
+    t.integer "p_num"
+    t.integer "p_price"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
@@ -35,6 +70,7 @@ ActiveRecord::Schema.define(version: 20230321103212) do
     t.datetime "updated_at", null: false
     t.string "email"
     t.string "phone"
+    t.boolean "Is_admin", default: false
   end
 
 end

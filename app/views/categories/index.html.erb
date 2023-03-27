@@ -1,27 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Categories</h1>
+<h2>Categories</h2> 
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+   <ul class="list-group">
+      <% @categories.each do |category| %>
+        <li class="list-group-item"><%= category.name %> &nbsp; &nbsp;
+          <!--
+         <td><%= link_to 'Show', category %> &nbsp; |
+             <%= link_to 'Edit', edit_category_path(category) %> &nbsp; |
+             <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          -->
+         </li>
+      <% end %>
+</ul>
 
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+<!--
 <%= link_to 'New Category', new_category_path %>
+-->

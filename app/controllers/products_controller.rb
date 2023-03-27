@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy ]
+  skip_before_action :authorized, only: [:index, :show, :search, :set_product]
+  before_action :set_product, only: %i[show edit update destroy ]
+  def search
+  end
 
   # GET /products or /products.json
   def index
@@ -60,11 +63,17 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      if params[:id] == "search"
+       #  @product = Product.find_by(name: params[:w]) 
+         @products = Product.where("name LIKE ?", "%#{ params[:w]}%")
+         render products_search_path
+      else
+         @product = Product.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :category_id, :original_price, :discounted_price, :stock)
+      params.require(:product).permit(:name, :kind_id, :original_price, :discounted_price, :stock, :pnum)
     end
 end

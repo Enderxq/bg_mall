@@ -1,0 +1,44 @@
+<style>
+.media-object {
+  height: 68px ; 
+  width: 66px;
+}
+</style>
+
+
+<div class="container">      
+<h1>购物车</h1>
+<div class="row">
+  <div class="container">
+    <div class="alert alert-info">
+      <div class="media shopping-cart-row">
+        <div class="media-left">
+          <a href="/products/<%= @shopping_car.id %>">
+            <img class="media-object" alt="<%= @shopping_car.p_name %>" src="<%= image_url('1678945367352.jpeg') %>"/>
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><a href="/products/<%= @shopping_car.id %>"><%= @shopping_car.p_name %></a></h4>
+              数量: <%= @shopping_car.p_num %> 价格: <%= @shopping_car.p_price %>
+        </div>
+        <div class="media-right">
+          <form action="/shopping_car/<%= @shopping_car.id %>" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put"/>
+            <p><input type="text" name="amount" value="<%= @shopping_car.p_num %>"/></p>
+            <p>
+              <input type="submit" name="commit" value="更新" class="btn btn-default btn-xs" data-disable-with="更新" />
+              <a data-confirm="不考虑一下了?" class="btn btn-default btn-xs" rel="nofollow" data-method="delete" href="/shopping_car/<%= @shopping_car.id %>">删除</a>
+            </p>
+          </form> 
+        </div>
+      </div>
+    </div>
+    <div class="pull-right">
+      <strong>总价: <%= @shopping_car.p_price %></strong>
+        &nbsp;
+        <a class="btn btn-danger btn-lg" href="/orders/new">去结算</a>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+

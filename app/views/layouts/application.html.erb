@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
+<style>
+</style>
+
   <head>
     <title>必顾商城</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 
+                                             'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="kxWTkHtFdLGrJedBkbHXpHfirbu86xVGVnsK9Puw1VjuV+BX3EM8ejAH531TmDNEYU6+4vuEOAthqypOt41k2w==" />
+
+    <link rel="stylesheet" media="all" href="/assets/application.self-a12424bc363ff5b2a2c6cf684989d8f2aa2e2c643ded4c74a00db36edcbcbcad.css?body=1" />
   </head>
 
   <body>
     <%= render 'layouts/header' %>
     <div class="container"> 
+      <%= render 'layouts/notice' %>
       <%= yield %>
       <%= render 'layouts/footer' %>
     </div>

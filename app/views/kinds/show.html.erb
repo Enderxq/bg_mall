@@ -1,0 +1,38 @@
+<style>
+.thumbnail {
+  height: 290px;
+}
+.breadcrumb a {
+  color: #337ab7;
+  text-decoration: none;
+}
+.breadcrumb a:hover, a:focus {
+  color: #23527c;
+  text-decoration: underline;
+  background-color: transparent;
+}
+</style>
+<%=render 'layouts/sidebar' %>
+
+<div class="col-lg-9">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active"><%= @kind.category.name %></li>
+    <li class="active"><%= @kind.name %></li>
+  </ol>
+  <h1><%= @kind.name %></h1>
+
+  <div class="row">
+    <% @kind.products.each do |product| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <a href="/products/<%= product.id %>"><img alt="小米手机" src="<%= image_url('1678945367352.jpeg') %>"/></a>
+          <div class="caption">
+            <h4><a class="title" href="/products/<%= product.id %>"><%= product.name %></a></h4>
+            <p><strong>¥<%= product.discounted_price %></strong> <span style="text-decoration:line-through">¥<%= product.original_price %></span></p>
+            <p><a class="btn btn-danger add-to-cart-btn btn-xs" data-product-id="1" href="/shopping_car/new?id=<%= product.id %>"><i class='fa fa-spinner'></i> 加入购物车</a></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>

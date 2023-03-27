@@ -1,0 +1,121 @@
+<style>
+.media.shopping-cart-row {
+  height: 61px;
+  border-bottom: 1px solid #ccc;
+}
+.media.shopping-cart-row:last-child {
+  border-bottom: 0;
+}
+.media-object {
+  height: 60px;
+  width: 66;
+}
+.list-group-item label {
+  font-size: 14px;
+  font-weight: normal;
+}
+a {
+  color: #337ab7;
+  text-decoration: none;
+  background-color: transparent;
+}
+a:hover, a:focus {
+  color: #23527c;
+  text-decoration: underline;
+  background-color: transparent;
+}
+a:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+</style>
+<h1>确认订单</h1>
+<div class="row">
+  <div class="container">
+    <div class="page-header">
+      <h4><i class="fa fa-map-marker"></i> 收货地址</h4>
+    </div>
+    <div>
+      <div class="pull-right">
+        <a class="btn btn-info btn-xs new-address-btn" href="/addresses/new"> 添加收货地址</a>
+      </div>
+      <div class="clearfix"></div>
+      <br>
+      <% if !Address.nil? %>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <% Address.all.each do |address|%>
+            <label>
+            <input type="radio" name="address_id" value="1" checked="">
+               <%=address.person %>
+               <%=address.addr_detail%>
+               <%=address.phone %>
+            <%= link_to '编辑', edit_address_path(address) %>
+            <!--
+            <a class="inline edit-address-btn" data-remote="true" href="/addresses/<%= address.id %>/edit">编辑</a>
+            -->
+            <a data-confirm="确认删除该地址吗？" class="remove-address-btn inline" data-remote="true" rel="nofollow" data-method="delete" href="/addresses/<%= address.id %>">删除</a>
+       </label>
+          <% end %>
+        </li>
+      </ul>
+    <% end %>
+    </div>
+
+    <div class="page-header">
+      <h4><i class="fa fa-credit-card"></i> 支付方式</h4>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <input type="radio" name="payment_method" value="alipay" checked />
+        <img width="100" src="<%= image_url('alipay.png') %>" alt="Alipay" />
+      </li>
+    </ul>
+
+    <div class="page-header">
+      <h4><i class="fa fa-list-alt"></i> 商品列表</h4>
+    </div>
+      <% total_price = 0 %>
+      <% ShoppingCar.all.each do |shopping_car| %>
+          <div class="media shopping-cart-row">
+
+            <div class="media-left">
+                <a href="/products/<%= shopping_car.id %>">
+                  <img class="media-object" alt="<%= shopping_car.p_name %>" src="<%= image_url('1678945367352.jpeg') %>"/>
+                </a>
+            </div>
+
+            <div class="media-body">
+              <h4 class="media-heading"><a href="/products/<%= shopping_car.id %>"><%= shopping_car.p_name %></a></h4>
+                      数量: <%= shopping_car.p_num %> 价格: ¥<%= shopping_car.p_price %>
+            </div>
+          </div>
+          <% total_price = total_price + shopping_car.p_price %>
+       <% end %>
+       <% payment_no = "rbuy" + [*('a'..'z'),*(0..9)].shuffle[0..15].join %>
+    </div>
+
+    <br />
+    <div class="pull-right">
+      <form class="create-order-form" action="/orders" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="PwMQDPbWRAXN5wi0jAWegaEDc1xDQxPzB7H4A6fZ7UIoHG+22W7CqwYPBWg6Nd4YLf9u5JLATdqZD+itX0IKNg==" />
+        <input type="hidden" name="address_id" />
+        <strong>总价: ¥<%= total_price %></strong>
+        <input type="submit" value="确认订单" class="btn btn-danger btn-lg"/>
+      </form> 
+    </div>
+    <div class="clearfix"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+  </div>
+</div>
+
+<!--
+<script>
+    $.get('/addresses', function(data) {
+      $('#address_list').html(data);
+    })
+</script>
+-->

@@ -1,3 +1,5 @@
+
+<!--
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -7,3 +9,12 @@
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
+-->
+
+
+
+ <div class="col-lg-3">
+ <% @category.kinds.each do |kind| %>
+   <li class="list-group-item text-center" ><a href="/categories/<%= @category.id %>/kinds/<%= kind.id %>"><%= kind.name %></a></li>
+ <% end %>
+ <div>

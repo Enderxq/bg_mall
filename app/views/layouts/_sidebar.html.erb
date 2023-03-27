@@ -1,2 +1,27 @@
-<div>
+<style>
+.list-group-item-m a {
+  color: #337ab7;
+  text-decoration: none;
+}
+.list-group-item-m a:hover, a:focus {
+  color: #23527c;
+  text-decoration: underline;
+  background-color: transparent;
+}
+</style>
+<div class="col-lg-3">
+   <ul class="list-group">
+      <% Category.all.order(id: :asc).each do |category| %>
+        <li class="list-group-item"><%= category.name %></li>
+        <div class="list-group-item-m">
+             <% category.kinds.each do |kind| %>
+               <li class="list-group-item list-group-item-m" ><a href="/categories/<%= category.id %>/kinds/<%= kind.id %>"><%= kind.name %></a></li>
+             <% end %>
+        </div>
+      <% end %>
+       <!--
+      <li class="list-group-item"><a href="/categories/2">手机</a></li>
+      -->
+   </ul>
 </div>
+

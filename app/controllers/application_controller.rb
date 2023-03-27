@@ -16,7 +16,4 @@ class ApplicationController < ActionController::Base
     redirect_to '/welcome' unless logged_in?
   end
 
-  def index
-
-  end
 end

@@ -1,0 +1,2 @@
+module ShoppingCarHelper
+end

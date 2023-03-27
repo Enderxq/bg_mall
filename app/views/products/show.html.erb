@@ -1,29 +1,32 @@
-<p id="notice"><%= notice %></p>
+<style>
+.thumbnail {
+  height: 290px;
+}
+a {
+  background-color: transparent;
+}
+</style>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<%= render 'layouts/sidebar' %>
+<div class="container">
 
-<p>
-  <strong>Category:</strong>
-  <%= @product.category_id %>
-</p>
+<div class="col-lg-9">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+    </ol>
+</div>
 
-<p>
-  <strong>Original price:</strong>
-  <%= @product.original_price %>
-</p>
-
-<p>
-  <strong>Discounted price:</strong>
-  <%= @product.discounted_price %>
-</p>
-
-<p>
-  <strong>Stock:</strong>
-  <%= @product.stock %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div class="col-lg-9">
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href="/products/<%= @product.id %>"><img alt="<%=@product.name %>" src="<%= image_url('1678945367352.jpeg') %>"/></a>
+        <div class="caption">
+          <h4><a class="title" href="/products/<%= @product.id %>"><%=@product.name %></a></h4>
+          <p><strong>¥<%=@product.discounted_price %></strong> <span style="text-decoration:line-through">¥<%= @product.original_price %></span></p>
+          <p><a class="btn btn-danger add-to-cart-btn btn-xs" href="/shopping_car/new?id=<%= @product.id %>"><i class='fa fa-spinner'></i> 加入购物车</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
