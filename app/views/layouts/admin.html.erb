@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html style="overflow: auto">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="turbolinks-cache-control" content="no-cache">
+  <title>bg_mall</title>
+  <meta charset="utf-8"/>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <link rel="icon" href="/uploads/image/biguguanjia.ico">
+  <!-- CameoAdmin -->
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%#= javascript_include_tag 'dialog-plus-min', 'data-turbolinks-track': 'reload' %>
+
+
+</head>
+
+<body>
+ <%= render 'layouts/header' %>
+    <div class="container">
+      <%= render 'layouts/notice' %>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
+</body>
+</html>
