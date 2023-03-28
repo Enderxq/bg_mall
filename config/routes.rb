@@ -21,7 +21,7 @@ Rails.application.routes.draw do
    put '/profile/change_pwd', to: 'users#change_pwd'
 
   namespace :admin do
-    root 'sessions#new'
+    root 'sessions#index'
 
     resources :sessions
 

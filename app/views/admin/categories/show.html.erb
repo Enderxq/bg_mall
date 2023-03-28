@@ -1,0 +1,32 @@
+<div>
+  <div class="pull-right">
+    <a class="btn btn-primary" href="/admin/categories/new">新建分类</a>
+  </div>
+
+  <h1>  分类:<%= @category.name %><%= @category.kinds.all.length %> </h1>
+</div>
+
+<div>
+  <table class="table table-striped">
+    <tr>
+      <th>ID</th>
+      <th>名称</th>
+      <th>Weight</th>
+      <th></th>
+    </tr>
+
+    <% @category.kinds.each do |kind| %>
+      <tr>
+        <td><%= kind.id %></td>
+        <td><%= kind.name %></td>
+        <td></td>
+        <td align="right">
+          <a href="/admin/categories/<%= @category.id>/kinds/<%= kind.id %>/edit">编辑</a> 
+          <a data-confirm="确认删除吗?" rel="nofollow" data-method="delete" href="/admin/categories/<%= @category.id>/kinds/<%= kind.id %>">删除</a>
+        </td>
+      </tr>
+  </table>
+
+  
+</div>
+

@@ -1,0 +1,44 @@
+<div class="container">
+  <div>
+    <div class="pull-right">
+      <a class="btn btn-primary" href="/admin/products/new">新建商品</a>
+    </div>
+
+    <h1>   商品<%= @products.length %>  </h1>
+  </div>
+
+  <div>
+    <table class="table table-striped">
+      <tr>
+        <th>ID</th>
+        <th>名称</th>
+        <th>UUID/SKU</th>
+        <!--
+        <th>MSRP</th>
+        -->
+        <th>价格</th>
+        <th>折扣价</th>
+        <th>库存</th>
+        <th>状态</th>
+        <th></th>
+      </tr>
+
+      <% @products.each do |product| %>
+      <tr>
+          <td><%= product.id %></td>
+          <td><%= product.name %></td>
+          <td><%= product.p_num %></td>
+          <td><%= product.original_price %></td>
+          <td><%= product.discounted_price %></td>
+          <td><%= product.stock %></td>
+          <td>on</td>
+          <td align="right">
+            <a href="/admin/products/<%= product.id %>/edit">编辑</a>
+            <a data-confirm="确认删除吗?" rel="nofollow" data-method="delete" href="/admin/products/<%= product.id %>">删除</a>
+            <a href="/admin/products/<%= product.id %>">图片管理</a>
+          </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

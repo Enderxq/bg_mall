@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230327092120) do
+ActiveRecord::Schema.define(version: 20230328034638) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "addr_detail"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20230327092120) do
     t.datetime "updated_at", null: false
     t.string "email"
     t.string "phone"
-    t.boolean "Is_admin", default: false
+    t.boolean "is_admin"
   end
 
 end

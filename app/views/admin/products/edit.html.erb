@@ -1,0 +1,91 @@
+<style>
+.form-body {
+  padding: 20px;
+  border: 1px solid #eee;
+}
+</style>
+
+<div>
+  <h1>修改商品 #<%= @product.id %></h1>
+</div>
+
+<div class="form-body">
+  <form class="form-horizontal" id="edit_product_<%= @product.id %>" action="/admin/products/<%= @product.id %>" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put" /><input type="hidden" name="authenticity_token" value="atn1bxr5jnGguUsgf5r6di6tn4hRMKx9zJWs3SH6kcRFw2RRUeIAKKxR28QFsp8RkV/Tk5apUrZwN8WgpF+iOg==" />
+    
+    <div class="form-group">
+      <label for="title" class="col-sm-2 control-label">名称:*</label>
+      <div class="col-sm-5">
+        <input class="form-control" type="text" value="<%= @product.name %>" name="product[title]" id="product_title" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="kind_id" class="col-sm-2 control-label">所属分类:</label>
+      <div class="col-sm-5">
+        <select name="product[kind_id]">
+          <option></option>
+          <% Category.all.each do |category| %>
+            <optgroup label="<%= category.name %>"></optgroup>
+            <% category.kinds.each do |kind| %>
+              <option value="<%= kind.id %>" selected><%= kind.name %></option>
+            <% end %>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="title" class="col-sm-2 control-label">上下架状态:*</label>
+      <div class="col-sm-5">
+        <select name="product[status]">
+            <option value="on" >上架</option>
+            <option value="off" selected>下架</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="amount" class="col-sm-2 control-label">库存*:</label>
+      <div class="col-sm-5">
+        <input class="form-control" type="text" value="<%= @product.stock %>" name="product[stock]" id="product_stock" /> 必须为整数
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price" class="col-sm-2 control-label">价格*:</label>
+      <div class="col-sm-5">
+        <input class="form-control" type="text" value="<%= @product.original_price %>" name="product[original_price]" id="product_original_price" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price" class="col-sm-2 control-label">折扣价*:</label>
+      <div class="col-sm-5">
+        <input class="form-control" type="text" value="<%= @product.discounted_price %>" name="product[discounted_price]" id="product_discounted_price" />
+      </div>
+    </div>
+
+    <!--
+    <div class="form-group">
+      <label for="msrp" class="col-sm-2 control-label">MSRP*:</label>
+      <div class="col-sm-5">
+        <input class="form-control" type="text" value="" name="product[msrp]" id="product_msrp" />
+      </div>
+    </div>
+    -->
+
+    <div class="form-group">
+      <label for="description" class="col-sm-2 control-label">描述*:</label>
+      <div class="col-sm-5">
+        <textarea class="form-control" name="product[description]" id="product_description"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-8">
+        <input type="submit" name="commit" value="编辑商品" class="btn btn-default" data-disable-with="编辑商品" />
+      </div>
+    </div>
+  </form>
+</div>
+
